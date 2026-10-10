@@ -1,8 +1,9 @@
-import { Suspense, useCallback, useEffect, useRef } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { AdaptiveDpr, Preload } from '@react-three/drei';
 import { Canvas, useFrame, useThree, type RootState } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getScene } from '../data/scenes';
+import type { WorldGroup } from '../types';
 import { useQuality } from '../hooks/useQuality';
 import { getExperience, setExperience, useExperience } from '../state/experienceStore';
 import CosmicWorld from '../scenes/CosmicWorld';
@@ -67,10 +68,35 @@ function RendererGuard() {
   return null;
 }
 
-/** Mounts only the heavy world group the current stage needs. */
+/**
+ * Mounts only the heavy world group the current stage needs.
+ *
+ * BLACK-FLASH-ON-TRANSITION FIX
+ * -----------------------------
+ * The displayed world group is kept in local state and only switched while the
+ * transition is actively covering the screen (phase 'out' / 'swap') — or on the
+ * very first mount. If we switched the instant `stage` changed, a fast desktop
+ * GPU would render one or more frames of the *empty* new region before its
+ * geometry finished mounting, which read as a black flash exactly during
+ * scene changes. By deferring the swap to behind the flare / warp overlay, the
+ * old world stays on screen until the new one is ready underneath the veil.
+ */
 function ActiveWorlds() {
   const stage = useExperience((s) => s.stage);
-  const world = getScene(stage).world;
+  const transitionPhase = useExperience((s) => s.transitionPhase);
+  const targetWorld = getScene(stage).world;
+
+  const [world, setWorld] = useState<WorldGroup>(targetWorld);
+
+  useEffect(() => {
+    if (world === targetWorld) return;
+    // 'swap' is the instant the veil is at full opacity — the safe moment to
+    // tear down one world and build the next. 'idle' covers glides within the
+    // same world group (no veil, but then targetWorld hasn't actually changed).
+    if (transitionPhase === 'swap' || transitionPhase === 'idle') {
+      setWorld(targetWorld);
+    }
+  }, [targetWorld, transitionPhase, world]);
 
   return (
     <>
@@ -100,11 +126,20 @@ export function Experience() {
       camera={{ fov: 50, near: 0.12, far: 14000, position: [0, 0, 92] }}
       gl={{
         antialias: quality.tier !== 'low',
-        alpha: false,
+        // `alpha: true` with a solid CSS/scene background is more robust across
+        // desktop drivers than an opaque drawing buffer feeding the post
+        // composer — the opaque combination was a source of black frames.
+        alpha: true,
         stencil: false,
         depth: true,
-        powerPreference: 'high-performance',
+        // 'default' (not 'high-performance'). On dual-GPU laptops/PCs,
+        // 'high-performance' forces a switch to the discrete GPU, and that
+        // switch can make the context unstable and flash black. 'default' lets
+        // the OS keep a stable context; the scene is light enough not to need
+        // the forced dGPU.
+        powerPreference: 'default',
         preserveDrawingBuffer: false,
+        failIfMajorPerformanceCaveat: false,
       }}
       onCreated={onCreated}
       // The HUD lives in the DOM above the canvas; Three.js only needs to
