@@ -74,12 +74,12 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-        with:
-          # Enables GitHub Pages (Actions build type) automatically on the first
-          # run, so no manual Settings - Pages step is needed. If your account
-          # or org restricts this, enable it once under Settings - Pages -
-          # Source: GitHub Actions and this becomes a no-op.
-          enablement: true
+        # ONE-TIME MANUAL STEP REQUIRED FIRST:
+        #   Repo -> Settings -> Pages -> Build and deployment -> Source:
+        #   "GitHub Actions".
+        # The workflow token is not permitted to create the Pages site itself
+        # ("Resource not accessible by integration"), so it must be enabled once
+        # by hand. After that this step and every future push deploy cleanly.
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
