@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#03040B" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>MARLO — Explore My Universe</title>
+    <meta
+      name="description"
+      content="An immersive cinematic 3D space portfolio. Travel through the stars, board a futuristic spacecraft and discover Marlo's universe."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MARLO — Explore My Universe" />
+    <meta
+      property="og:description"
+      content="An immersive cinematic 3D space portfolio built with React, Three.js and WebGL."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Display + UI fonts. These are progressive enhancements: if the network is
+      unavailable the CSS font stacks fall back to bundled system faces and the
+      experience still renders correctly.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+      media="all"
+      onerror="this.dataset.failed='true'"
+    />
+
+    <style>
+      /* Painted before the bundle evaluates so there is never a white flash. */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #03040b;
+        color: #f4f7ff;
+        overflow: hidden;
+      }
+      #boot-veil {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at 50% 55%, #080d24 0%, #03040b 70%);
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="boot-veil"></div>
+    <div id="root"></div>
+    <noscript>
+      <div
+        style="
+          position: fixed;
+          inset: 0;
+          display: grid;
+          place-items: center;
+          padding: 2rem;
+          background: #03040b;
+          color: #f4f7ff;
+          font-family: system-ui, sans-serif;
+          text-align: center;
+          z-index: 10;
+        "
+      >
+        <div>
+          <h1 style="color: #00e5ff; letter-spacing: 0.2em">MARLO</h1>
+          <p>
+            This immersive 3D portfolio requires JavaScript. Please enable JavaScript in your
+            browser to launch the experience.
+          </p>
+        </div>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

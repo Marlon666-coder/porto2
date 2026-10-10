@@ -1,0 +1,81 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissions required by the official GitHub Pages deployment actions.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deployment at a time; queue instead of cancelling so a
+# finished build is never discarded half-way through publishing.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build production bundle
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        # `npm ci` is used whenever a lockfile is committed (reproducible installs).
+        # The fallback keeps the very first deployment working if the lockfile has
+        # not been generated and committed yet.
+        run: |
+          if [ -f package-lock.json ]; then
+            echo "Lockfile found - running npm ci"
+            npm ci
+          else
+            echo "::warning::package-lock.json is missing. Run 'npm install' locally and commit the lockfile for reproducible builds."
+            npm install
+          fi
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Build
+        # VITE_BASE_PATH is intentionally left unset: vite.config.ts derives the
+        # correct base path from GITHUB_REPOSITORY. Set the repository variable
+        # VITE_BASE_PATH if you serve the site from a custom path or domain.
+        env:
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH }}
+        run: npm run build
+
+      - name: Add .nojekyll guard
+        # Stops GitHub Pages from running Jekyll, which would drop files and
+        # folders whose names begin with an underscore.
+        run: touch dist/.nojekyll
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Publish to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

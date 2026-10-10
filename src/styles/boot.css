@@ -1,0 +1,292 @@
+/* ==========================================================================
+   Boot / launch sequence (SCENE 01 overlay)
+   The 3D awakening renders behind this, so the backdrop stays mostly open.
+   ========================================================================== */
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: var(--inset-top) var(--inset-right) var(--inset-bottom) var(--inset-left);
+  background:
+    radial-gradient(circle at 50% 56%, rgba(3, 4, 11, 0.3) 0%, rgba(3, 4, 11, 0.86) 70%),
+    linear-gradient(180deg, rgba(3, 4, 11, 0.92) 0%, rgba(3, 4, 11, 0.4) 40%, rgba(3, 4, 11, 0.95) 100%);
+  animation: boot-fade-in 1.4s var(--ease-out) both;
+}
+
+@keyframes boot-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.boot__frame {
+  position: absolute;
+  inset: calc(var(--gutter) * 0.9);
+  pointer-events: none;
+}
+
+.boot__corner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(0, 229, 255, 0.4);
+}
+
+.boot__corner--tl {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.boot__corner--tr {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+.boot__corner--bl {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+}
+.boot__corner--br {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+.boot__content {
+  width: min(680px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.1rem, 3vh, 2.1rem);
+  text-align: center;
+}
+
+.boot__eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(0.6rem, 1.4vw, 0.74rem);
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(0, 229, 255, 0.72);
+  text-shadow: 0 0 18px rgba(0, 229, 255, 0.5);
+}
+
+/* --- boot log --- */
+
+.boot__log {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: center;
+  min-height: 5.4em;
+}
+
+.boot__line {
+  font-family: var(--font-ui);
+  font-size: clamp(0.76rem, 1.8vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out),
+    color 0.6s var(--ease-out);
+}
+
+.boot__line.is-visible {
+  opacity: 0.55;
+  transform: translateY(0);
+}
+
+.boot__line.is-active {
+  opacity: 1;
+  color: var(--ice-white);
+  text-shadow: 0 0 22px rgba(0, 229, 255, 0.45);
+}
+
+.boot__cursor {
+  color: var(--electric-cyan);
+  margin-right: 0.3em;
+}
+
+/* --- progress meter --- */
+
+.boot__meter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.boot__meter-track {
+  position: relative;
+  height: 3px;
+  background: rgba(159, 200, 255, 0.14);
+  overflow: hidden;
+}
+
+.boot__meter-track::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(3, 4, 11, 0) 0px,
+    rgba(3, 4, 11, 0) 7px,
+    rgba(3, 4, 11, 0.85) 8px
+  );
+  pointer-events: none;
+}
+
+.boot__meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--holo-blue), var(--electric-cyan));
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.7);
+  transition: width 0.45s var(--ease-out);
+}
+
+.boot__meter-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.boot__meter-item {
+  color: rgba(0, 229, 255, 0.6);
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- launch --- */
+
+.boot__launch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.8rem, 2vh, 1.3rem);
+  opacity: 0.4;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+.boot__launch.is-ready {
+  opacity: 1;
+}
+
+.boot__prompt {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 3.4vw, 1.6rem);
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ice-white);
+  text-shadow:
+    0 0 24px rgba(0, 229, 255, 0.6),
+    0 0 60px rgba(66, 135, 255, 0.35);
+}
+
+.boot__launch.is-ready .boot__prompt {
+  animation: prompt-pulse 3.2s ease-in-out infinite;
+}
+
+@keyframes prompt-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 22px rgba(0, 229, 255, 0.5),
+      0 0 54px rgba(66, 135, 255, 0.28);
+  }
+  50% {
+    text-shadow:
+      0 0 34px rgba(0, 229, 255, 0.85),
+      0 0 86px rgba(66, 135, 255, 0.45);
+  }
+}
+
+.boot__enter {
+  font-size: clamp(0.74rem, 1.6vw, 0.92rem);
+  padding: 1.05em 2.3em;
+}
+
+.boot__options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.4rem;
+}
+
+.boot__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.45em 0.7em;
+  border: 1px solid transparent;
+  transition:
+    color 0.25s var(--ease-out),
+    border-color 0.25s var(--ease-out);
+}
+
+.boot__option:hover:not(:disabled),
+.boot__option:focus-visible:not(:disabled) {
+  color: var(--electric-cyan);
+  border-color: rgba(0, 229, 255, 0.35);
+}
+
+.boot__option:disabled {
+  opacity: 0.35;
+}
+
+.boot__option-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.6);
+}
+
+.boot__option-dot.is-on {
+  background: var(--electric-cyan);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.9);
+}
+
+.boot__hint {
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  max-width: 34ch;
+}
+
+@media (max-width: 520px) {
+  .boot__eyebrow {
+    letter-spacing: 0.3em;
+  }
+  .boot__line {
+    letter-spacing: 0.12em;
+  }
+  .boot__prompt {
+    letter-spacing: 0.18em;
+  }
+}
