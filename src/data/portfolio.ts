@@ -280,10 +280,10 @@ export const portfolio: PortfolioData = {
         id: 'linkedin',
         label: 'LinkedIn',
         handle: 'Marlo Rizky Valentino',
-        // TODO: paste your real LinkedIn profile URL here
-        // (looks like https://www.linkedin.com/in/your-slug) and set enabled: true.
-        href: '',
-        enabled: false,
+        // The ?isSelfProfile=true parameter is stripped: it only appears when
+        // you view your own profile and is not part of the public URL.
+        href: 'https://www.linkedin.com/in/marlo-rizky-valentino-b239a542a',
+        enabled: true,
       },
     ],
   },
