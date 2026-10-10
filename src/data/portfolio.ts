@@ -34,12 +34,12 @@ export const portfolio: PortfolioData = {
   },
 
   about: {
-    name: 'Marlo',
+    name: 'Marlo Rizky Valentino',
     callsign: 'MARLO',
     role: 'Computer Science Student',
     education: 'BINUS University — Computer Science (2026 – Present)',
     introduction: [
-      "Hi, I'm Marlo — a Computer Science student at BINUS University.",
+      "Hi, I'm Marlo Rizky Valentino — a Computer Science student at BINUS University.",
       'I like building things that live on a screen but feel like somewhere you can actually go: interfaces with depth, motion and a bit of atmosphere.',
       'This site is both my portfolio and my playground — an excuse to push what a browser can render in real time.',
     ],
@@ -191,13 +191,15 @@ export const portfolio: PortfolioData = {
    */
   certificates: [
     {
-      id: 'cert-slot-1',
-      title: 'Certificate Slot 01',
-      issuer: 'Awaiting entry',
-      issued: '—',
-      image: '',
+      id: 'cert-oad-fahmil-quran',
+      title: "Bronze Medal — Musabaqoh Fahmil Qur'an 3",
+      issuer: 'Olympic Ahmad Dahlan VII (National Level)',
+      issued: '8 March 2024 · Bandung',
+      // Upload the certificate image to public/assets/images/ and keep this
+      // path in sync with the uploaded filename.
+      image: 'assets/images/cert-fahmil-quran.jpg',
       verifyUrl: '',
-      isPlaceholder: true,
+      isPlaceholder: false,
     },
     {
       id: 'cert-slot-2',
