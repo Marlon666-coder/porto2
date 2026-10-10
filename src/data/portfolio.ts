@@ -195,7 +195,7 @@ export const portfolio: PortfolioData = {
       title: "Bronze Medal — Musabaqoh Fahmil Qur'an 3",
       issuer: 'Olympic Ahmad Dahlan VII · National Level',
       issued: 'March 2024 · Bandung',
-      image: 'assets/images/cert-olympicad.jpg',
+      image: 'assets/images/cert-fahmil-quran.jpg',
       verifyUrl: '',
       isPlaceholder: false,
     },
