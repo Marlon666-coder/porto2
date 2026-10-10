@@ -74,6 +74,12 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          # Enables GitHub Pages (Actions build type) automatically on the first
+          # run, so no manual Settings - Pages step is needed. If your account
+          # or org restricts this, enable it once under Settings - Pages -
+          # Source: GitHub Actions and this becomes a no-op.
+          enablement: true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
