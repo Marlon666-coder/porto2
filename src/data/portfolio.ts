@@ -184,49 +184,56 @@ export const portfolio: PortfolioData = {
   ],
 
   /**
-   * CERTIFICATES — intentionally empty reserved slots.
-   * For each real certificate: set the title / issuer / issued date, drop the
-   * image into public/assets/images/, set `image`, add an optional `verifyUrl`,
-   * and set `isPlaceholder: false`.
+   * ACHIEVEMENTS — real documentation of competitions, awards and milestones.
+   * (The field is still named `certificates` internally.) For each entry: set
+   * the title / issuer / date, upload the photo to public/assets/images/, point
+   * `image` at it, and keep `isPlaceholder: false`.
    */
   certificates: [
     {
-      id: 'cert-oad-fahmil-quran',
+      id: 'cert-olympicad',
       title: "Bronze Medal — Musabaqoh Fahmil Qur'an 3",
-      issuer: 'Olympic Ahmad Dahlan VII (National Level)',
-      issued: '8 March 2024 · Bandung',
-      // Upload the certificate image to public/assets/images/ and keep this
-      // path in sync with the uploaded filename.
-      image: 'assets/images/cert-fahmil-quran.jpg',
+      issuer: 'Olympic Ahmad Dahlan VII · National Level',
+      issued: 'March 2024 · Bandung',
+      image: 'assets/images/cert-olympicad.jpg',
       verifyUrl: '',
       isPlaceholder: false,
     },
     {
-      id: 'cert-slot-2',
-      title: 'Certificate Slot 02',
-      issuer: 'Awaiting entry',
-      issued: '—',
-      image: '',
+      id: 'cert-hafalan-quran',
+      title: "Memorised 30 Juz of the Qur'an",
+      issuer: 'Hafiz · 30 Juz',
+      issued: '2025',
+      image: 'assets/images/cert-hafalan-quran.jpg',
       verifyUrl: '',
-      isPlaceholder: true,
+      isPlaceholder: false,
     },
     {
-      id: 'cert-slot-3',
-      title: 'Certificate Slot 03',
-      issuer: 'Awaiting entry',
-      issued: '—',
-      image: '',
+      id: 'cert-debat-bawaslu',
+      title: 'Debate Competition Winner — Bawaslu',
+      issuer: 'Provincial Level',
+      issued: '2024',
+      image: 'assets/images/cert-debat-bawaslu.jpg',
       verifyUrl: '',
-      isPlaceholder: true,
+      isPlaceholder: false,
     },
     {
-      id: 'cert-slot-4',
-      title: 'Certificate Slot 04',
-      issuer: 'Awaiting entry',
-      issued: '—',
-      image: '',
+      id: 'cert-best-of-best',
+      title: 'Best of the Best — Top of the Cohort',
+      issuer: 'Awarded as the best student of the batch',
+      issued: '',
+      image: 'assets/images/cert-best-of-best.jpg',
       verifyUrl: '',
-      isPlaceholder: true,
+      isPlaceholder: false,
+    },
+    {
+      id: 'cert-koleksi',
+      title: '30+ Certificates & Awards',
+      issuer: 'A collection of achievements in one frame',
+      issued: '',
+      image: 'assets/images/cert-koleksi.jpg',
+      verifyUrl: '',
+      isPlaceholder: false,
     },
   ],
 

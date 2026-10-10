@@ -9,7 +9,7 @@ const DESTINATION_BLURB: Record<string, string> = {
   projects: 'Hangar bay · things I have built',
   skills: 'Laboratory · the tech I work with',
   education: 'Archive · academic record',
-  certificates: 'Vault · credentials',
+  certificates: 'Hall of records · achievements & documentation',
   contact: 'Terminal · open a channel',
 };
 

@@ -128,13 +128,14 @@ export function WebGLFallback({ reason }: { reason?: string }) {
       </section>
 
       <section className="fallback__section" id="certificates">
-        <h2>Certificates</h2>
+        <h2>Achievements</h2>
         <ul>
           {certificates.map((certificate) => {
             const verify = safeLink(certificate.verifyUrl);
             return (
               <li key={certificate.id}>
-                <strong>{certificate.title}</strong> — {certificate.issuer} ({certificate.issued})
+                <strong>{certificate.title}</strong> — {certificate.issuer}
+                {certificate.issued ? ` (${certificate.issued})` : ''}
                 {verify && (
                   <>
                     {' · '}

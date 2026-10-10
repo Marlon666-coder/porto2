@@ -74,10 +74,10 @@ export function CertificateDetailModal() {
       <article className="modal__panel">
         <header className="modal__header">
           <div>
-            <p className="modal__eyebrow">CREDENTIAL RECORD</p>
+            <p className="modal__eyebrow">ACHIEVEMENT RECORD</p>
             <h3 className="modal__title">{certificate.title}</h3>
             <p className="modal__tagline">
-              {certificate.issuer} · {certificate.issued}
+              {[certificate.issuer, certificate.issued].filter(Boolean).join(' · ')}
             </p>
           </div>
           <button
@@ -126,15 +126,15 @@ export function CertificatesPanel() {
 
   return (
     <PanelFrame
-      title="Certificates"
-      subtitle="Digital Archive · Credential Vault"
+      title="Achievements"
+      subtitle="Hall of Records · Documentation"
       accent={ACCENT}
       code="P05"
     >
       <p className="panel__lead">
         {filled > 0
-          ? `${filled} credential${filled === 1 ? '' : 's'} on record. Select a plate to enlarge it.`
-          : 'No credentials have been added yet — the slots below are reserved and ready.'}
+          ? `${filled} achievement${filled === 1 ? '' : 's'} on record. Select a plate to enlarge it.`
+          : 'No achievements have been added yet — the slots below are reserved and ready.'}
       </p>
 
       <ul className="cert-grid">
@@ -149,7 +149,9 @@ export function CertificatesPanel() {
               <span className="cert-card__meta">
                 <span className="cert-card__title">{certificate.title}</span>
                 <span className="cert-card__issuer">{certificate.issuer}</span>
-                <span className="cert-card__date">{certificate.issued}</span>
+                {certificate.issued && (
+                  <span className="cert-card__date">{certificate.issued}</span>
+                )}
               </span>
             </button>
           </li>
@@ -157,8 +159,8 @@ export function CertificatesPanel() {
       </ul>
 
       <p className="panel__footnote">
-        Edit the <code>certificates</code> array in <code>src/data/portfolio.ts</code> to fill these
-        slots.
+        Edit the <code>certificates</code> array in <code>src/data/portfolio.ts</code> to add more
+        achievements.
       </p>
     </PanelFrame>
   );

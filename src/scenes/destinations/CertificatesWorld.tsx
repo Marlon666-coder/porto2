@@ -126,7 +126,7 @@ export function CertificatesWorld() {
       <OrbitNodes count={quality.tier === 'low' ? 8 : 22} radius={10} spread={6} speed={0.34} size={0.055} color="#FFB3E6" />
 
       <HoloText
-        text="ARCHIVE · SELECT A RECORD"
+        text="ACHIEVEMENTS · SELECT A RECORD"
         size={0.095}
         position={[0, 0.95, 6.8]}
         colorCore="#FFD9F3"
@@ -138,7 +138,7 @@ export function CertificatesWorld() {
         opacityScale={0.6}
       />
 
-      <DestinationTitle title="Certificates" subtitle="Digital Archive · Credential Vault" accent={ACCENT} position={[0, 7.4, -3]} />
+      <DestinationTitle title="Achievements" subtitle="Hall of Records · Documentation" accent={ACCENT} position={[0, 7.4, -3]} />
     </group>
   );
 }

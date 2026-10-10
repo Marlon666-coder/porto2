@@ -241,8 +241,8 @@ const destinationSpecs: DestinationSpec[] = [
   },
   {
     id: 'certificates',
-    label: 'Certificates',
-    caption: 'Planet 05 — Futuristic digital archive',
+    label: 'Achievements',
+    caption: 'Planet 05 — Hall of achievements & documentation',
     arrival: { position: [6, 20, 52], target: [0, 2, -8], fov: 74 },
     settle: { position: [0, 2.7, 18], target: [0, 2.2, -5], fov: 57 },
     parallax: 0.75,
