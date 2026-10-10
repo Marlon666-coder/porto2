@@ -250,37 +250,38 @@ export const portfolio: PortfolioData = {
       {
         id: 'instagram',
         label: 'Instagram',
-        handle: '@your.handle',
-        href: '',
-        enabled: false,
+        handle: '@minrzky.__',
+        href: 'https://instagram.com/minrzky.__',
+        enabled: true,
       },
       {
         id: 'whatsapp',
         label: 'WhatsApp',
-        handle: '+62 ••• •••• ••••',
-        // Example once configured: 'https://wa.me/628123456789'
-        href: '',
-        enabled: false,
+        handle: '+62 813-4631-7088',
+        // wa.me needs the international format with no leading 0 and no symbols.
+        href: 'https://wa.me/6281346317088',
+        enabled: true,
       },
       {
         id: 'email',
         label: 'Email',
-        handle: 'you@example.com',
-        // Example once configured: 'mailto:you@example.com'
-        href: '',
-        enabled: false,
+        handle: 'hzikri86@gmail.com',
+        href: 'mailto:hzikri86@gmail.com',
+        enabled: true,
       },
       {
         id: 'github',
         label: 'GitHub',
-        handle: 'github.com/your-username',
-        href: '',
-        enabled: false,
+        handle: 'github.com/Marlon666-coder',
+        href: 'https://github.com/Marlon666-coder',
+        enabled: true,
       },
       {
         id: 'linkedin',
         label: 'LinkedIn',
-        handle: 'linkedin.com/in/your-profile',
+        handle: 'Marlo Rizky Valentino',
+        // TODO: paste your real LinkedIn profile URL here
+        // (looks like https://www.linkedin.com/in/your-slug) and set enabled: true.
         href: '',
         enabled: false,
       },
