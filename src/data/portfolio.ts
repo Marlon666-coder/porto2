@@ -64,10 +64,11 @@ export const portfolio: PortfolioData = {
       'Build products that feel genuinely memorable, not just functional.',
     ],
     focusAreas: ['Creative Front-End', 'Real-Time 3D', 'Interaction Design', 'Web Performance'],
-    // Drop your real portrait at public/assets/images/portrait.jpg and set the
-    // path below. While empty, a holographic placeholder frame is shown.
-    portrait: '',
-    portraitAlt: 'Portrait of Marlo',
+    // Real portrait: upload the file to public/assets/images/portrait.jpg.
+    // Until the file exists, a holographic placeholder frame is shown instead
+    // (and the onError handler falls back to it if the upload is missing).
+    portrait: 'assets/images/portrait.jpg',
+    portraitAlt: 'Marlo at Computer Science Festival 2026',
   },
 
   /**
