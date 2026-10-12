@@ -131,8 +131,9 @@ export const portfolio: PortfolioData = {
   ],
 
   /**
-   * SKILLS — technology lists only. No proficiency percentages are claimed.
-   * Edit the lists to match what you actually work with.
+   * SKILLS — plain capability lists grouped by category (technical, languages,
+   * communication, creative). No proficiency percentages are claimed.
+   * Edit the lists to match what you actually do.
    */
   skills: [
     {
@@ -164,6 +165,34 @@ export const portfolio: PortfolioData = {
       title: 'Other Technologies',
       items: ['GLSL / Shaders', 'WebGL', 'SQL', 'Figma', 'Blender (basics)'],
       note: 'Areas currently being explored.',
+    },
+    {
+      id: 'spoken-languages',
+      title: 'Languages',
+      items: ['Indonesian (native)', 'Arabic', 'English'],
+      note: 'Spoken and written languages.',
+    },
+    {
+      id: 'communication',
+      title: 'Public Speaking & Communication',
+      items: [
+        'Public speaking',
+        'Event moderator / MC',
+        'Mentoring (general studies)',
+        'Mentoring (Islamic studies)',
+      ],
+      note: 'Speaking, hosting and teaching in front of an audience.',
+    },
+    {
+      id: 'creative-media',
+      title: 'Creative & Media',
+      items: [
+        'Video editing',
+        'Social media management',
+        'Poster & graphic design',
+        'Instagram feed design',
+      ],
+      note: 'Content creation and digital media.',
     },
   ],
 

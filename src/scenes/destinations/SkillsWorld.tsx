@@ -33,9 +33,15 @@ function SkillOrbit({
   const ringRef = useRef<THREE.Group>(null);
   const nodeRef = useRef<THREE.Group>(null);
 
-  const radius = 2.3 + index * 1.05;
+  // Spread the rings evenly between an inner and outer radius so the whole
+  // orbital diagram always fits inside the lab shell no matter how many skill
+  // categories there are (adding categories tightens the spacing instead of
+  // growing past the walls / equipment pods).
+  const INNER = 2.3;
+  const OUTER = 7.3;
+  const radius = total <= 1 ? INNER : INNER + (index / (total - 1)) * (OUTER - INNER);
   const tilt = -0.5 + (index / Math.max(1, total - 1)) * 1.0;
-  const speed = 0.22 - index * 0.025;
+  const speed = 0.22 - (index / Math.max(1, total)) * 0.14;
 
   useFrame((state, delta) => {
     if (ringRef.current) ringRef.current.rotation.z += delta * speed;
