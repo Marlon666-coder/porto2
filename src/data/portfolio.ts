@@ -77,17 +77,17 @@ export const portfolio: PortfolioData = {
    */
   projects: [
     {
-      id: 'project-alpha',
-      title: 'Sample Project — Orbital Dashboard',
-      tagline: 'Placeholder entry · replace with your own project',
+      id: 'savor-ordering',
+      title: 'SAVOR — Restaurant Ordering Website',
+      tagline: 'Good food, better moments · a mobile-first ordering experience',
       description:
-        'Example slot for a data-visualisation dashboard. Swap this text for a real project description: what problem it solves, what you built, and what you learned while building it.',
-      stack: ['React', 'TypeScript', 'Vite'],
+        'A fully working, mobile-first food & drink ordering website for a café/restaurant. It covers the whole flow end to end: a searchable, category-filtered menu of 39 products; live product customisation (size, hot/iced, sugar & ice level, add-ons, notes) with prices that update as you go; a persistent cart (saved in localStorage); checkout with form validation, dine-in/takeaway and payment options; an order confirmation with a unique order number; and order tracking with a status timeline. Built as a dependency-free single-page app in modern vanilla JavaScript (ES modules) with hand-written CSS and inline-SVG illustrations, in a component-style architecture (data / state / ui / views). It is also accessibility-minded and reduced-motion aware.',
+      stack: ['JavaScript (ES Modules)', 'CSS', 'HTML', 'SPA', 'localStorage', 'SVG'],
       image: '',
-      repository: { url: '' },
-      demo: { url: '' },
-      isExample: true,
-      status: 'Example slot',
+      repository: { url: 'https://github.com/Marlon666-coder/OrderMenu' },
+      demo: { url: 'https://marlon666-coder.github.io/OrderMenu/' },
+      isExample: false,
+      status: 'Live',
     },
     {
       id: 'project-beta',
