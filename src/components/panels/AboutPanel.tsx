@@ -94,6 +94,19 @@ export function AboutPanel() {
             ))}
           </PanelBlock>
 
+          {about.principle && (
+            <figure className="creed">
+              <span className="creed__mark" aria-hidden="true">
+                “
+              </span>
+              <blockquote className="creed__quote">{about.principle.quote}</blockquote>
+              {about.principle.original && (
+                <p className="creed__original">{about.principle.original}</p>
+              )}
+              <figcaption className="creed__meaning">{about.principle.meaning}</figcaption>
+            </figure>
+          )}
+
           <PanelBlock label="Interests">
             <TagList items={about.interests} accent={ACCENT} />
           </PanelBlock>

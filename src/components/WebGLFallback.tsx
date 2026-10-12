@@ -45,6 +45,13 @@ export function WebGLFallback({ reason }: { reason?: string }) {
         {about.introduction.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
+        {about.principle && (
+          <blockquote className="fallback__creed">
+            <strong>&ldquo;{about.principle.quote}&rdquo;</strong>
+            {about.principle.original && <em> — {about.principle.original}</em>}
+            <span>{about.principle.meaning}</span>
+          </blockquote>
+        )}
         <h3>Interests</h3>
         <p className="fallback__tags">{about.interests.join(' · ')}</p>
         <h3>Learning journey</h3>

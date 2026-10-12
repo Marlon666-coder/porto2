@@ -39,31 +39,39 @@ export const portfolio: PortfolioData = {
     role: 'Computer Science Student',
     education: 'BINUS University — Computer Science (2026 – Present)',
     introduction: [
-      "Hi, I'm Marlo Rizky Valentino — a Computer Science student at BINUS University.",
-      'I like building things that live on a screen but feel like somewhere you can actually go: interfaces with depth, motion and a bit of atmosphere.',
-      'This site is both my portfolio and my playground — an excuse to push what a browser can render in real time.',
+      "Hi, I'm Marlo Rizky Valentino — a Computer Science student at BINUS University, and someone who refuses to be defined by a single field.",
+      "I live at the intersection of three worlds: technology, communication, and faith. I write code and build interactive 3D experiences on the web; I speak, moderate events, and mentor others; and as someone who has memorised all 30 Juz of the Qur'an, I try to carry discipline and purpose into everything I do.",
+      'I believe the most interesting work happens where disciplines meet — where logic meets language, and where engineering meets meaning.',
     ],
+    // The principle this whole page is built around.
+    principle: {
+      quote: 'Die like the living, and never live like the dead.',
+      original: 'Matilah seperti orang hidup, dan jangan hidup seperti orang mati.',
+      meaning:
+        "To me this means: when I'm gone, I want to leave behind a contribution worth remembering — a work meaningful enough that it keeps me alive in people's minds. The opposite is to merely exist: to pass through the world producing nothing, unnoticed. I choose the first. Everything I build is an attempt to leave something real behind.",
+    },
     interests: [
-      'Interactive 3D and WebGL',
+      'Interactive 3D & WebGL',
       'Front-end engineering',
-      'Creative coding & shaders',
-      'UI / UX and motion design',
-      'Game-like web experiences',
-      'Science fiction and space',
+      'Public speaking & debate',
+      'Mentoring & teaching',
+      'Creative media & design',
+      "Qur'an & Islamic studies",
     ],
     learningJourney: [
-      'Building a foundation in programming fundamentals, data structures and algorithms.',
-      'Learning modern web development with TypeScript and React.',
-      'Exploring real-time 3D rendering with Three.js and GLSL shaders.',
-      'Practising version control, code review and deployment workflows with Git and GitHub.',
+      'Building a strong foundation in programming fundamentals, data structures and algorithms.',
+      'Learning modern web development with JavaScript, TypeScript and React.',
+      'Exploring real-time 3D rendering on the web with Three.js and GLSL shaders.',
+      'Sharpening communication through debate, public speaking, and mentoring — technical and spiritual.',
+      'Growing creative skills in video editing, social media management and visual design.',
     ],
     goals: [
-      'Keep turning ideas into things people can actually click, explore and use.',
-      'Grow into a developer who is strong in both engineering and visual craft.',
-      'Contribute to open-source and learn in public.',
-      'Build products that feel genuinely memorable, not just functional.',
+      'To leave a lasting work behind — something the world remembers.',
+      'To bridge technology, communication and values rather than choosing just one.',
+      'To build products that are not only functional, but genuinely meaningful.',
+      'To keep learning in public, and to help others grow along the way.',
     ],
-    focusAreas: ['Creative Front-End', 'Real-Time 3D', 'Interaction Design', 'Web Performance'],
+    focusAreas: ['Creative Front-End', 'Real-Time 3D', 'Communication & Leadership', 'Purpose-Driven Work'],
     // Real portrait: upload the file to public/assets/images/portrait.jpg.
     // Until the file exists, a holographic placeholder frame is shown instead
     // (and the onError handler falls back to it if the upload is missing).

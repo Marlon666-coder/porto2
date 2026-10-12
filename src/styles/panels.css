@@ -502,6 +502,75 @@
   color: var(--text-faint);
 }
 
+/* --- the guiding principle: a featured holographic creed --- */
+.creed {
+  position: relative;
+  margin: 1.3rem 0 0;
+  padding: 1.1rem 1.1rem 1rem 1.4rem;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 229, 255, 0.1) 0%,
+    rgba(8, 15, 38, 0.5) 55%,
+    rgba(157, 78, 221, 0.1) 100%
+  );
+  border: 1px solid var(--hairline);
+  border-left: 2px solid var(--accent);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+  overflow: hidden;
+}
+
+.creed::after {
+  /* slow scanline sweep */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 229, 255, 0.06) 0px,
+    rgba(0, 229, 255, 0) 2px,
+    rgba(0, 229, 255, 0) 4px
+  );
+  pointer-events: none;
+}
+
+.creed__mark {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  line-height: 0.5;
+  color: var(--accent);
+  opacity: 0.6;
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+}
+
+.creed__quote {
+  margin: 0.3rem 0 0;
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  color: var(--ice-white);
+  text-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+}
+
+.creed__original {
+  margin: 0.5rem 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: rgba(0, 229, 255, 0.8);
+}
+
+.creed__meaning {
+  margin: 0.7rem 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--hairline-soft);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
 /* --------------------------------------------------------------------------
    Projects
    -------------------------------------------------------------------------- */

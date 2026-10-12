@@ -143,12 +143,23 @@ export interface ContactChannel {
   enabled: boolean;
 }
 
+export interface AboutPrinciple {
+  /** The guiding quote, in the site's display language. */
+  quote: string;
+  /** The original wording (kept so the meaning is never lost in translation). */
+  original?: string;
+  /** What the principle means to the author. */
+  meaning: string;
+}
+
 export interface AboutContent {
   name: string;
   callsign: string;
   role: string;
   education: string;
   introduction: string[];
+  /** A personal guiding principle, featured prominently in About Me. */
+  principle?: AboutPrinciple;
   interests: string[];
   learningJourney: string[];
   goals: string[];
