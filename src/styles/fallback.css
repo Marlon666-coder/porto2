@@ -147,6 +147,30 @@ body.no-webgl {
   letter-spacing: 0.04em;
 }
 
+.fallback__moments {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.fallback__moments figure {
+  margin: 0;
+}
+
+.fallback__moments img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+}
+
+.fallback__moments figcaption {
+  margin-top: 0.3rem;
+  font-size: 0.76rem;
+  color: var(--text-faint);
+}
+
 .fallback__creed {
   margin: 1.2rem 0;
   padding: 0.9rem 1.1rem;

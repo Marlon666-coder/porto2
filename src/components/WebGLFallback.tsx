@@ -52,6 +52,19 @@ export function WebGLFallback({ reason }: { reason?: string }) {
             <span>{about.principle.meaning}</span>
           </blockquote>
         )}
+        {about.moments && about.moments.length > 0 && (
+          <>
+            <h3>In action</h3>
+            <div className="fallback__moments">
+              {about.moments.map((moment) => (
+                <figure key={moment.image}>
+                  <img src={assetUrl(moment.image)} alt={moment.caption} loading="lazy" />
+                  <figcaption>{moment.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </>
+        )}
         <h3>Interests</h3>
         <p className="fallback__tags">{about.interests.join(' · ')}</p>
         <h3>Learning journey</h3>

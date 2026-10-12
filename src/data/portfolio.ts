@@ -50,6 +50,19 @@ export const portfolio: PortfolioData = {
       meaning:
         "To me this means: when I'm gone, I want to leave behind a contribution worth remembering — a work meaningful enough that it keeps me alive in people's minds. The opposite is to merely exist: to pass through the world producing nothing, unnoticed. I choose the first. Everything I build is an attempt to leave something real behind.",
     },
+    // "In action" gallery: real moments of speaking, hosting and teaching —
+    // proof behind the communication skills, not just a claim. Upload the files
+    // to public/assets/images/ with the names below.
+    moments: [
+      {
+        image: 'assets/images/moment-mc.jpg',
+        caption: 'Hosting a pesantren graduation ceremony',
+      },
+      {
+        image: 'assets/images/moment-speaking.jpg',
+        caption: 'Speaking on stage at a public event',
+      },
+    ],
     interests: [
       'Interactive 3D & WebGL',
       'Front-end engineering',

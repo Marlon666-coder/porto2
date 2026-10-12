@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { portfolio } from '../../data/portfolio';
 import { DESTINATION_ACCENTS } from '../../data/worldLayout';
 import { assetUrl } from '../../utils/asset';
+import type { AboutMoment } from '../../types';
 import PanelFrame, { PanelBlock, TagList } from './PanelFrame';
 
 const ACCENT = DESTINATION_ACCENTS.about;
@@ -66,6 +67,44 @@ function Portrait() {
   );
 }
 
+/**
+ * A single "in action" photo with the holographic treatment and a caption.
+ * If the image hasn't been uploaded yet (or fails to load), it shows a labelled
+ * placeholder instead of a broken image.
+ */
+function Moment({ moment }: { moment: AboutMoment }) {
+  const [failed, setFailed] = useState(false);
+  const src = moment.image ? assetUrl(moment.image) : '';
+  const showImage = Boolean(src) && !failed;
+
+  return (
+    <figure className="moment">
+      <div className="moment__frame">
+        {showImage ? (
+          <img
+            className="moment__image"
+            src={src}
+            alt={moment.caption}
+            loading="lazy"
+            decoding="async"
+            onError={() => {
+              console.warn('[about] moment image failed to load:', src);
+              setFailed(true);
+            }}
+          />
+        ) : (
+          <div className="moment__placeholder">
+            <span aria-hidden="true">▣</span>
+          </div>
+        )}
+        <span className="moment__scanlines" aria-hidden="true" />
+        <span className="moment__edge" aria-hidden="true" />
+      </div>
+      <figcaption className="moment__caption">{moment.caption}</figcaption>
+    </figure>
+  );
+}
+
 export function AboutPanel() {
   const about = portfolio.about;
 
@@ -105,6 +144,20 @@ export function AboutPanel() {
               )}
               <figcaption className="creed__meaning">{about.principle.meaning}</figcaption>
             </figure>
+          )}
+
+          {about.moments && about.moments.length > 0 && (
+            <PanelBlock label="In Action">
+              <p className="panel__text">
+                Not just a claim — moments of speaking, hosting and teaching in front of real
+                audiences.
+              </p>
+              <div className="moments">
+                {about.moments.map((moment) => (
+                  <Moment key={moment.image} moment={moment} />
+                ))}
+              </div>
+            </PanelBlock>
           )}
 
           <PanelBlock label="Interests">

@@ -571,6 +571,77 @@
   color: var(--text-dim);
 }
 
+/* --- "In action" gallery (speaking / hosting / teaching) --- */
+.moments {
+  margin-top: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.6rem;
+}
+
+.moment {
+  margin: 0;
+}
+
+.moment__frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: rgba(4, 9, 24, 0.8);
+  border: 1px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.14);
+}
+
+.moment__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.05) contrast(1.04);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.moment:hover .moment__image {
+  transform: scale(1.05);
+}
+
+.moment__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  color: rgba(0, 229, 255, 0.5);
+  background:
+    linear-gradient(rgba(0, 229, 255, 0.1) 1px, transparent 1px) 0 0 / 100% 14px,
+    linear-gradient(90deg, rgba(0, 229, 255, 0.1) 1px, transparent 1px) 0 0 / 14px 100%;
+}
+
+.moment__scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 229, 255, 0.1) 0px,
+    rgba(0, 229, 255, 0) 2px,
+    rgba(0, 229, 255, 0) 4px
+  );
+  pointer-events: none;
+}
+
+.moment__edge {
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 18px rgba(0, 229, 255, 0.25);
+  pointer-events: none;
+}
+
+.moment__caption {
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--text-faint);
+}
+
 /* --------------------------------------------------------------------------
    Projects
    -------------------------------------------------------------------------- */

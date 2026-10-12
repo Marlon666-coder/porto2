@@ -152,6 +152,12 @@ export interface AboutPrinciple {
   meaning: string;
 }
 
+export interface AboutMoment {
+  /** Path relative to `public/`, e.g. 'assets/images/moment-mc.jpg'. */
+  image: string;
+  caption: string;
+}
+
 export interface AboutContent {
   name: string;
   callsign: string;
@@ -160,6 +166,8 @@ export interface AboutContent {
   introduction: string[];
   /** A personal guiding principle, featured prominently in About Me. */
   principle?: AboutPrinciple;
+  /** "In action" photos — speaking, hosting, teaching. */
+  moments?: AboutMoment[];
   interests: string[];
   learningJourney: string[];
   goals: string[];
