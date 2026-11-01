@@ -5,21 +5,18 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Permissions required by the official GitHub Pages deployment actions.
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Only one Pages deployment at a time; queue instead of cancelling so a
-# finished build is never discarded half-way through publishing.
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
   build:
-    name: Build production bundle
+    name: Build static site
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -29,62 +26,37 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          # NOTE: `cache: npm` is intentionally NOT set here. actions/setup-node
-          # fails the whole job if npm caching is enabled while no lockfile is
-          # committed. The install step below handles caching-free installs and
-          # upgrades to `npm ci` automatically once a lockfile exists. Enabling
-          # the cache is a nice optimisation to add back after you commit
-          # package-lock.json.
+          # `cache: npm` is not set: it fails the job when no lockfile is
+          # committed. Add it back after committing package-lock.json.
 
       - name: Install dependencies
-        # `npm ci` is used whenever a lockfile is committed (reproducible,
-        # fastest installs). Until then, `npm install` keeps the very first
-        # deployment working from a clean checkout with no lockfile.
         run: |
           if [ -f package-lock.json ]; then
-            echo "Lockfile found - running npm ci"
             npm ci
           else
-            echo "::warning::package-lock.json is missing. Run 'npm install' locally and commit the lockfile for reproducible builds and faster CI."
+            echo "::warning::package-lock.json is missing. Run 'npm install' locally and commit it for reproducible builds."
             npm install --no-audit --no-fund
           fi
 
-      - name: Type check
-        # Reports type errors in the Actions log without blocking the deploy, so
-        # a strict-mode nit can never stop the site from publishing. Remove
-        # `continue-on-error` once you want type errors to gate deployment.
-        continue-on-error: true
-        run: npm run typecheck
-
-      - name: Build
-        # VITE_BASE_PATH is intentionally left unset: vite.config.ts derives the
-        # correct base path from GITHUB_REPOSITORY. Set the repository variable
-        # VITE_BASE_PATH if you serve the site from a custom path or domain.
+      - name: Build (Next.js static export, includes type check)
+        # The base path is derived from GITHUB_REPOSITORY in next.config.mjs.
+        # Set a repository variable BASE_PATH to override (e.g. "/" for a custom domain).
         env:
-          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH }}
-        # Uses the Vite bundle without the blocking tsc gate (the Type check step
-        # above already reports type issues). Switch to `npm run build` once the
-        # type check is green to make type errors fail the deploy.
-        run: npm run build:nocheck
+          BASE_PATH: ${{ vars.BASE_PATH }}
+          NEXT_TELEMETRY_DISABLED: 1
+        run: npm run build
 
-      - name: Add .nojekyll guard
-        # Stops GitHub Pages from running Jekyll, which would drop files and
-        # folders whose names begin with an underscore.
-        run: touch dist/.nojekyll
+      - name: Disable Jekyll
+        # Jekyll would drop the `_next/` folder, which holds every script and style.
+        run: touch out/.nojekyll
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-        # ONE-TIME MANUAL STEP REQUIRED FIRST:
-        #   Repo -> Settings -> Pages -> Build and deployment -> Source:
-        #   "GitHub Actions".
-        # The workflow token is not permitted to create the Pages site itself
-        # ("Resource not accessible by integration"), so it must be enabled once
-        # by hand. After that this step and every future push deploy cleanly.
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: out
 
   deploy:
     name: Publish to GitHub Pages

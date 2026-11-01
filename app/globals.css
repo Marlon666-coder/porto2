@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   MONOCHROME — A DIGITAL IDENTITY
+   Hierarchy comes from type, space and contrast. No colour, no glow.
+   ========================================================================== */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  /* Visible keyboard focus on both black and white sections. */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+
+  section {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+/* --- Lenis ---------------------------------------------------------------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* --- Hero entrance (CSS only, so content never waits on scripts) ---------- */
+@keyframes rise-in {
+  from {
+    transform: translateY(105%);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    transform: translateY(18px);
+    filter: blur(6px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes photo-in {
+  from {
+    transform: translateY(40px) scale(0.96);
+    clip-path: inset(12% 6% 12% 6% round 1.75rem);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    clip-path: inset(0 0 0 0 round 1.75rem);
+    opacity: 1;
+  }
+}
+
+.hero-line > span {
+  display: inline-block;
+  animation: rise-in 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 120ms);
+}
+
+.hero-fade {
+  animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 80ms + 260ms);
+}
+
+.hero-photo {
+  animation: photo-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 80ms + 120ms);
+}
+
+/* --- Profile photo -------------------------------------------------------- */
+.photo-card {
+  --mx: 50%;
+  --my: 35%;
+  transform-style: preserve-3d;
+}
+
+/* Soft light that follows the cursor; invisible until hover. */
+.photo-light {
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0) 45%
+  );
+  opacity: 0;
+  mix-blend-mode: soft-light;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.photo-card:hover .photo-light {
+  opacity: 1;
+}
+
+@keyframes ripple {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.45;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+}
+
+.photo-ripple {
+  width: 140%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 60%);
+  animation: ripple 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- Project cover texture ------------------------------------------------ */
+.cover-grid {
+  background-image:
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: -1px -1px;
+}
+/* Keep the grid as a faint texture without dimming the type above it. */
+.cover-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  background-image: none;
+  opacity: 0.94;
+}
+.cover-grid > * {
+  position: relative;
+}
+
+/* --- Reduced motion ------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-line > span,
+  .hero-fade,
+  .hero-photo,
+  .photo-ripple {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

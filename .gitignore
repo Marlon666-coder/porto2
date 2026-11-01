@@ -4,10 +4,10 @@ node_modules/
 .pnp.js
 
 # build output
+.next/
+out/
 dist/
-dist-ssr/
 build/
-.vite/
 *.local
 
 # environment / secrets
