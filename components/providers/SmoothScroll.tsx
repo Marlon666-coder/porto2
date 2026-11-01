@@ -90,3 +90,5 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
   return <ScrollContext.Provider value={api}>{children}</ScrollContext.Provider>;
 }
+
+export default SmoothScroll;
