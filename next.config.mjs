@@ -15,6 +15,10 @@ function resolveBasePath() {
     const trimmed = explicit.replace(/^\/+|\/+$/g, '');
     return trimmed ? `/${trimmed}` : '';
   }
+  // Vercel (and other root hosts) serve from the domain root, so no prefix.
+  // Vercel also exposes GITHUB_REPOSITORY, so this check must come first or the
+  // GitHub Pages sub-path below would wrongly apply on Vercel and break assets.
+  if (process.env.VERCEL) return '';
   const slug = process.env.GITHUB_REPOSITORY?.trim();
   if (slug && slug.includes('/')) {
     const repo = slug.split('/')[1] ?? '';
