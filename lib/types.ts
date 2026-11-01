@@ -38,6 +38,16 @@ export interface EducationEntry {
   highlights?: string[];
 }
 
+export interface ExperienceEntry {
+  id: string;
+  role: string;
+  organisation: string;
+  period: string;
+  description: string;
+  /** Short, scannable outcomes/skills drawn from the description. */
+  highlights?: string[];
+}
+
 export interface Achievement {
   id: string;
   title: string;
@@ -107,6 +117,8 @@ export interface PortfolioData {
   projects: Project[];
   skills: SkillGroup[];
   education: EducationEntry[];
+  /** Organisation & volunteer experience (optional section). */
+  experience?: ExperienceEntry[];
   certificates: Achievement[];
   contact: {
     heading: string;

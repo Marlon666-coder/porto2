@@ -26,8 +26,8 @@ export const portfolio: PortfolioData = {
     location: 'BINUS University',
   },
 
-  // e.g. 'assets/cv/marlo-rizky-valentino-cv.pdf'
-  cv: '',
+  // Upload the PDF to public/assets/cv/ and keep this path in sync.
+  cv: 'assets/cv/marlo-rizky-valentino-cv.pdf',
 
   about: {
     name: 'Marlo Rizky Valentino',
@@ -218,13 +218,60 @@ export const portfolio: PortfolioData = {
       id: 'binus',
       institution: 'BINUS UNIVERSITY',
       program: 'Computer Science',
-      period: '2026 – Present',
+      period: 'Aug 2026 – Aug 2030',
       detail: 'Undergraduate programme in Computer Science.',
       highlights: [
         'Programming fundamentals and problem solving',
         'Data structures and algorithms',
         'Software engineering practice',
         'Mathematics for computing',
+      ],
+    },
+    {
+      id: 'mbs-tarakan',
+      institution: 'MBS Tarakan',
+      program: 'Islamic Boarding School (Pondok Pesantren)',
+      period: 'Graduated 2026',
+      detail:
+        "A pesantren education that shaped discipline, leadership and a complete 30-Juz Qur'an memorisation — the foundation behind the communication, faith and values this portfolio reflects.",
+      highlights: [
+        "Qur'an memorisation (30 Juz) and murajaah",
+        'Leadership and organisation',
+        'Public speaking and da’wah',
+        'Arabic language',
+      ],
+    },
+  ],
+
+  /**
+   * EXPERIENCE — organisation & volunteer roles, carried over from the CV.
+   */
+  experience: [
+    {
+      id: 'exp-media-ipm',
+      role: 'Head of Media & Publication',
+      organisation: 'IPM MBS Tarakan',
+      period: 'Jan 2025 – Jan 2026',
+      description:
+        'Led and coordinated the Media & Publication division and took an active part in the organisation’s programmes and events. Worked in sponsorship as part of a team that raised Rp85,000,000 for the Cendekiawan Muslim event, spoke at the IPM "Santri Berprestasi" seminar, and was trusted several times as event committee lead.',
+      highlights: [
+        'Raised Rp85,000,000 in event sponsorship (team)',
+        'Seminar speaker — "Santri Berprestasi"',
+        'Committee lead across multiple events',
+        'Leadership, negotiation, event management, public speaking',
+      ],
+    },
+    {
+      id: 'exp-ibadah',
+      role: 'Worship Affairs (Bagian Ibadah)',
+      organisation: 'Korps Santri Inti Pondok',
+      period: 'Jun 2024 – Jun 2025',
+      description:
+        'Responsible for supporting worship activities and keeping order among students, especially in the mosque — managing, directing and coordinating so that activities ran in an orderly and conducive way.',
+      highlights: [
+        'Leadership and group management',
+        'Discipline and responsibility',
+        'Communication and coordination',
       ],
     },
   ],
@@ -258,11 +305,33 @@ export const portfolio: PortfolioData = {
       isPlaceholder: false,
     },
     {
+      id: 'cert-supernova-english',
+      award: '1st Place',
+      level: 'National',
+      title: 'Supernova GEMANESIA — English',
+      issuer: 'Supernova GEMANESIA · National Level',
+      issued: 'Jan 2026',
+      image: '',
+      verifyUrl: '',
+      isPlaceholder: false,
+    },
+    {
+      id: 'cert-supernova-math',
+      award: '2nd Place',
+      level: 'National',
+      title: 'Supernova GEMANESIA — Mathematics',
+      issuer: 'Supernova GEMANESIA · National Level',
+      issued: 'Jan 2026',
+      image: '',
+      verifyUrl: '',
+      isPlaceholder: false,
+    },
+    {
       id: 'cert-debat-bawaslu',
-      award: 'Winner',
-      level: 'Provincial',
+      award: '1st Place',
+      level: 'City',
       title: 'Debate Competition Winner — Bawaslu',
-      issuer: 'Provincial Level',
+      issuer: 'Bawaslu · Tarakan City Level',
       issued: '2024',
       image: 'assets/images/cert-debat-bawaslu.jpg',
       verifyUrl: '',

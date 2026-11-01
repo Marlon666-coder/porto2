@@ -14,7 +14,7 @@ export function Contact() {
     <section id="contact" tabIndex={-1} aria-labelledby="contact-title" className="bg-ink pb-16 pt-24 text-paper outline-none md:pt-36">
       <div className="mx-auto max-w-shell px-5 md:px-10">
         <Reveal className="mb-8 flex items-center gap-4 text-label uppercase text-mute">
-          <span className="font-mono">06</span>
+          <span className="font-mono">07</span>
           <span className="h-px flex-1 bg-ink-2" aria-hidden="true" />
           <span>Contact</span>
         </Reveal>

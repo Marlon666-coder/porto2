@@ -9,7 +9,7 @@ export function Education() {
   return (
     <section id="education" tabIndex={-1} aria-labelledby="education-title" className="bg-paper py-24 text-ink outline-none md:py-36">
       <div className="mx-auto max-w-shell px-5 md:px-10">
-        <SectionHeader index="05" label="Education" title="Where the foundation is built." titleId="education-title" tone="light" />
+        <SectionHeader index="06" label="Education" title="Where the foundation is built." titleId="education-title" tone="light" />
 
         <ol className="relative border-l border-ink/15 pl-8 md:ml-[25%] md:pl-14">
           {entries.map((entry) => (
